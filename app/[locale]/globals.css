@@ -45,6 +45,7 @@
   --font-poppins: var(--font-poppins);
   --font-inter: var(--font-inter);
   --font-cairo: var(--font-cairo);
+  --font-space-grotesk: var(--font-space-grotesk);
 }
 
 :root {
