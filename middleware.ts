@@ -66,8 +66,8 @@ export default function middleware(req: NextRequest) {
 
   // Authenticated user visiting auth pages -> redirect away (dashboard or home)
   if (token && isAuthPage) {
-    const target = PROTECTED_PREFIXES[0] || "/";
-    url.pathname = `/${locale}${target}`;
+    // const target = PROTECTED_PREFIXES[0] || "/";
+    url.pathname = `/${locale}`;
     return NextResponse.redirect(url);
   }
 
