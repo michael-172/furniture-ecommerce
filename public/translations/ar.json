@@ -1,0 +1,30 @@
+{
+    "Auth": {
+        "login": "تسجيل الدخول",
+        "logout": "تسجيل الخروج",
+        "register": "تسجيل حساب جديد",
+        "alreadyHaveAccount": "هل لديك حساب بالفعل؟",
+        "namePlaceholder": "أدخل اسمك",
+        "usernamePlaceholder": "أدخل اسم المستخدم",
+        "emailPlaceholder": "أدخل بريدك الإلكتروني",
+        "passwordPlaceholder": "أدخل كلمة المرور",
+        "confirmPasswordPlaceholder": "تأكيد كلمة المرور",
+        "acceptTerms": "أوافق علي ",
+        "privacyPolicy": "سياسة الخصوصية",
+        "and": "و",
+        "termsOfUse": "شروط الاستخدام",
+        "submit": "إرسال",
+        "emailNotValid": "يرجى إدخال عنوان بريد إلكتروني صالح",
+        "acceptTermsRequired": "يجب عليك قبول الشروط والأحكام",
+        "userNameTooShort": "يجب أن يكون اسم المستخدم 2 حرفًا على الأقل",
+        "nameTooShort": "يجب أن يكون الاسم 2 حرفًا على الأقل",
+        "emailTooShort": "يجب أن يكون البريد الإلكتروني 5 أحرف على الأقل",
+        "passwordTooShort": "يجب أن تكون كلمة المرور 8 أحرف على الأقل",
+        "confirmPasswordTooShort": "يجب أن تكون كلمة مرور التأكيد 8 أحرف على الأقل",
+        "dontHaveAccount": "لا تملك حسابًا؟",
+        "loginSuccess": "تسجيل الدخول بنجاح!",
+        "registrationSuccess": "تسجيل الحساب بنجاح!",
+        "error": "حدث خطأ. يرجى المحاولة مرة أخرى.",
+        "signup": "انشئ حساب جديد"
+    }
+}
