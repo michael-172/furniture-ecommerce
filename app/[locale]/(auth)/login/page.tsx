@@ -10,6 +10,7 @@ import { useForm } from "react-hook-form";
 import MainFormItem from "@/components/shared/FormItem";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { LoginSchema } from "@/lib/validations/login.validations";
+import Image from "next/image";
 
 const Page = () => {
   const t = useTranslations("Auth");
@@ -32,6 +33,13 @@ const Page = () => {
     <div className="flex flex-col w-full  max-w-md space-y-4">
       <Form {...form}>
         <div className="flex flex-col gap-6">
+          <Image
+            src="/images/shared/Logo-Transparent.png"
+            alt="logo"
+            width={100}
+            height={100}
+            className="mx-auto"
+          />
           <Title
             fontSize="text-[40px]"
             fontWeight="font-medium"
