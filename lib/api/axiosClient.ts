@@ -1,0 +1,49 @@
+import axios, { AxiosError, AxiosInstance, AxiosResponse } from "axios";
+
+const axiosClient: AxiosInstance = axios.create({
+  baseURL:
+    process.env.API_URL || "https://oncotools-app.com/backend/public/api",
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+
+// Request Interceptor
+axiosClient.interceptors.request.use(
+  (config) => {
+    // Add auth token from cookies or localStorage
+    const token = document.cookie
+      .split("; ")
+      .find((row) => row.startsWith("token="))
+      ?.split("=")[1];
+
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+// Response Interceptor
+axiosClient.interceptors.response.use(
+  (response: AxiosResponse) => {
+    // Transform response data if needed
+    return response.data;
+  },
+  (error: AxiosError) => {
+    // Centralized error handling
+    if (error.response?.status === 401) {
+      // Handle unauthorized: redirect to login
+      window.location.href = "/login";
+    } else if (error.response?.status === 500) {
+      console.error("Server error:", error.message);
+    }
+    return Promise.reject(error.response?.data || error.message);
+  }
+);
+
+export default axiosClient;
