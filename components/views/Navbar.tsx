@@ -1,22 +1,18 @@
 "use client";
 import React from "react";
 import HamburgerToggle from "./HumbergerMenu";
-import { usePathname } from "next/navigation";
-import StyledButton from "../shared/StyledButton";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
-import { useLocale } from "next-intl";
 import { Badge } from "../ui/badge";
-
+import { Languages } from "lucide-react";
+import { useLocale } from "next-intl";
+import { usePathname } from "next/navigation";
+import { useLanguageChange } from "@/hooks/useLanguageChange";
 const Navbar = () => {
   const [open, setOpen] = React.useState(false);
   const locale = useLocale();
   const pathName = usePathname();
-
-  const onClose = () => {
-    setOpen(false);
-  };
-
+  const { handleLanguageChange } = useLanguageChange();
   const NavItems = [
     {
       id: 1,
@@ -42,7 +38,7 @@ const Navbar = () => {
 
   return (
     <div className="w-full  h-[60px] shrink-0 flex items-center bg-white text-black">
-      <div className="container px-4 mx-auto h-full w-full flex items-center justify-between px-4s">
+      <div className="container px-4 mx-auto h-full w-full flex items-center justify-between">
         <div className="flex items-center justify-between w-full h-full">
           <Link href="/" className="flex justify-center">
             <Image
@@ -82,6 +78,12 @@ const Navbar = () => {
               width={24}
               height={24}
               alt="User"
+            />
+            <Languages
+              className="cursor-pointer"
+              onClick={() =>
+                handleLanguageChange(locale === "en" ? "ar" : "en")
+              }
             />
             <div className="flex items-center justify-center gap-[5px]">
               <Image

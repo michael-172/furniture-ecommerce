@@ -22,7 +22,7 @@ const NavbarAd = () => {
             locale == "en" ? "font-inter" : "font-cairo"
           }`}
         >
-          <p>Shop Now</p>
+          <span>Shop Now</span>
           <ArrowRight width={18} height={18} className="mt-[2px]" />
         </p>
       </div>
