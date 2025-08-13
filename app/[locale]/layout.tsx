@@ -4,6 +4,7 @@ import "./globals.css";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
+import { Toaster } from "sonner";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -57,7 +58,10 @@ export default async function RootLayout({
         ${locale === "ar" ? "font-cairo" : "font-poppins"}
         antialiased`}
       >
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider>
+          <Toaster position="top-right" />
+          {children}
+        </NextIntlClientProvider>
       </body>
     </html>
   );
