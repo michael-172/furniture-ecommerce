@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { Cairo, Inter, Poppins, Space_Grotesk } from "next/font/google";
 import "./globals.css";
-import { hasLocale, NextIntlClientProvider } from "next-intl";
+import { hasLocale } from "next-intl";
 import { routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
+import ClientProviders from "./ClientProviders";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -64,7 +65,7 @@ export default async function RootLayout({
         ${locale === "ar" ? "font-cairo" : "font-poppins"}
         antialiased`}
       >
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <ClientProviders locale={locale}>{children}</ClientProviders>
       </body>
     </html>
   );

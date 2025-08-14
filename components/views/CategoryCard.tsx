@@ -38,7 +38,6 @@ const CategoryCard = ({
         width={100}
         height={100}
         className="!size-full object-cover"
-        objectFit="cover"
       />
     </div>
   );

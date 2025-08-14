@@ -1,3 +1,4 @@
+import Footer from "@/components/views/Footer";
 import Navbar from "@/components/views/Navbar";
 import NavbarAd from "@/components/views/NavbarAd";
 
@@ -11,6 +12,7 @@ export default function RootLayout({
       <NavbarAd />
       <Navbar />
       {children}
+      <Footer />
     </div>
   );
 }
