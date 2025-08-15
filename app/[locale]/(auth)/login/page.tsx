@@ -36,13 +36,14 @@ const Page = () => {
     <div className="flex flex-col w-full  max-w-md space-y-4">
       <Form {...form}>
         <div className="flex flex-col gap-6">
-          <Image
-            src="/images/shared/Logo-Transparent.png"
-            alt="logo"
-            width={100}
-            height={100}
-            className="mx-auto"
-          />
+          <Link href="/" className="flex justify-center">
+            <Image
+              src="/images/shared/Logo-Transparent.png"
+              alt="logo"
+              width={100}
+              height={100}
+            />
+          </Link>
           <Title
             fontSize="text-[40px]"
             fontWeight="font-medium"

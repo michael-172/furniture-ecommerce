@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { Cairo, Inter, Poppins } from "next/font/google";
+import { Cairo, Inter, Poppins, Space_Grotesk } from "next/font/google";
 import "./globals.css";
-import { hasLocale, NextIntlClientProvider } from "next-intl";
+import { hasLocale } from "next-intl";
 import { routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
 import { Toaster } from "sonner";
+import ClientProviders from "./ClientProviders";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -20,6 +21,11 @@ const cairo = Cairo({
   variable: "--font-cairo",
   subsets: ["latin"],
   weight: ["200", "300", "400", "500", "600", "700", "800", "900"],
+});
+const space_grotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -54,14 +60,13 @@ export default async function RootLayout({
   return (
     <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"}>
       <body
-        className={`${poppins.variable} ${cairo.variable} ${inter.variable} 
+        className={`${poppins.variable} ${cairo.variable} ${
+          space_grotesk.variable
+        } ${inter.variable} 
         ${locale === "ar" ? "font-cairo" : "font-poppins"}
         antialiased`}
       >
-        <NextIntlClientProvider>
-          <Toaster position="top-right" />
-          {children}
-        </NextIntlClientProvider>
+        <ClientProviders locale={locale}>{children}</ClientProviders>
       </body>
     </html>
   );

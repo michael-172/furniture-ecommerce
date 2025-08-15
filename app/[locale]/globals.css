@@ -45,6 +45,7 @@
   --font-poppins: var(--font-poppins);
   --font-inter: var(--font-inter);
   --font-cairo: var(--font-cairo);
+  --font-space-grotesk: var(--font-space-grotesk);
 }
 
 :root {
@@ -127,3 +128,11 @@
 }
 
 
+
+.swiper-pagination-bullet{
+  @apply w-2 h-2 bg-white rounded-full mx-2 cursor-pointer transition-all duration-300 ease-in-out;
+}
+
+.swiper-pagination-bullet-active {
+  @apply w-[30px]
+}

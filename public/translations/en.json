@@ -26,5 +26,8 @@
         "registrationSuccess": "Registration successful!",
         "error": "An error occurred. Please try again.",
         "signup": "Sign up"
+    },
+    "Home": {
+        "shopNow": "Shop Now"
     }
 }
