@@ -18,14 +18,13 @@ export function useAuthMutations() {
   const login = useCallback(
     async (credentials: AuthCredentials) => {
       try {
-        const response = await axiosClient.post("/auth/login", credentials);
-        console.log("Logging in:", response.data);
+        const { data } = await axiosClient.post("/auth/login", credentials);
+        document.cookie = `auth_token=${data.token}; path=/; secure; samesite=strict`;
         toast.success("Login successful");
         router.push("/");
         return { success: true };
       } catch (error: unknown) {
         toast.error((error as Error)?.message || "Login failed");
-        console.log("Login error:", (error as Error)?.message);
         return { success: false, error: "Login failed" };
       }
     },

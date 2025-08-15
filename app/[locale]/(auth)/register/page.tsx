@@ -153,7 +153,7 @@ const Page = () => {
           />
           <Button
             disabled={form.formState.isSubmitting}
-            className="w-full h-[48px]"
+            className="w-full h-[48px] cursor-pointer"
             type="submit"
           >
             {form.formState.isSubmitting ? (

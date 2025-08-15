@@ -31,11 +31,14 @@ axiosClient.interceptors.request.use(
 axiosClient.interceptors.response.use(
   (response: AxiosResponse) => {
     // Transform response data if needed
-    return response.data;
+    return response;
   },
   (error: AxiosError) => {
     // Centralized error handling
-    if (error.response?.status === 401) {
+    if (
+      error.response?.status === 401 &&
+      !window.location.href.includes("/login")
+    ) {
       // Handle unauthorized: redirect to login
       window.location.href = "/login";
     } else if (error.response?.status === 500) {
