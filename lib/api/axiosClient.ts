@@ -1,8 +1,7 @@
 import axios, { AxiosError, AxiosInstance, AxiosResponse } from "axios";
 
 const axiosClient: AxiosInstance = axios.create({
-  baseURL:
-    process.env.API_URL || "https://oncotools-app.com/backend/public/api",
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
   headers: {
     "Content-Type": "application/json",
   },
@@ -14,7 +13,7 @@ axiosClient.interceptors.request.use(
     // Add auth token from cookies or localStorage
     const token = document.cookie
       .split("; ")
-      .find((row) => row.startsWith("token="))
+      .find((row) => row.startsWith("auth_token="))
       ?.split("=")[1];
 
     if (token) {

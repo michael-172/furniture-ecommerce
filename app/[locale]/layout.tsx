@@ -4,6 +4,7 @@ import "./globals.css";
 import { hasLocale } from "next-intl";
 import { routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
+import { Toaster } from "sonner";
 import ClientProviders from "./ClientProviders";
 
 const poppins = Poppins({

@@ -11,10 +11,13 @@ import MainFormItem from "@/components/shared/FormItem";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { LoginSchema } from "@/lib/validations/login.validations";
 import Image from "next/image";
+import { useAuthMutations } from "@/hooks/auth/useAuthMutatuins";
+import { Loader2 } from "lucide-react";
 
 const Page = () => {
   const t = useTranslations("Auth");
   const locale = useLocale();
+  const { login } = useAuthMutations();
 
   const loginSchema = LoginSchema();
   const form = useForm<yup.InferType<typeof loginSchema>>({
@@ -23,8 +26,8 @@ const Page = () => {
     mode: "onSubmit",
   });
 
-  function onSubmit(values: yup.InferType<typeof loginSchema>) {
-    console.log(values);
+  async function onSubmit(values: yup.InferType<typeof loginSchema>) {
+    await login(values);
   }
 
   console.log(form.formState.errors);
@@ -89,8 +92,16 @@ const Page = () => {
               />
             )}
           />
-          <Button className="w-full h-[48px]" type="submit">
-            {t("submit")}
+          <Button
+            disabled={form.formState.isSubmitting}
+            className="w-full h-[48px]"
+            type="submit"
+          >
+            {form.formState.isSubmitting ? (
+              <Loader2 width={20} className="animate-spin" />
+            ) : (
+              t("submit")
+            )}
           </Button>
         </form>
       </Form>
