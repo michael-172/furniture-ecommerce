@@ -1,0 +1,33 @@
+{
+    "Auth": {
+        "login": "Sign in",
+        "logout": "Logout",
+        "register": "Sign up",
+        "alreadyHaveAccount": "Already have an account?",
+        "namePlaceholder": "Enter your name",
+        "usernamePlaceholder": "Enter your username",
+        "emailPlaceholder": "Enter your email",
+        "passwordPlaceholder": "Enter your password",
+        "confirmPasswordPlaceholder": "Confirm your password",
+        "acceptTerms": "I accept the",
+        "privacyPolicy": "Privacy Policy",
+        "and": "and",
+        "termsOfUse": "Terms of Use",
+        "submit": "Submit",
+        "emailNotValid": "Please enter a valid email address",
+        "acceptTermsRequired": "You must accept the terms and conditions",
+        "userNameTooShort": "Username must be at least 2 characters",
+        "nameTooShort": "Name must be at least 2 characters",
+        "emailTooShort": "Email must be at least 5 characters",
+        "passwordTooShort": "Password must be at least 8 characters",
+        "confirmPasswordTooShort": "Confirm Password must be at least 8 characters",
+        "dontHaveAccount": "Don't have an account?",
+        "loginSuccess": "Login successful!",
+        "registrationSuccess": "Registration successful!",
+        "error": "An error occurred. Please try again.",
+        "signup": "Sign up"
+    },
+    "Home": {
+        "shopNow": "Shop Now"
+    }
+}
