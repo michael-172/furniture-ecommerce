@@ -8,16 +8,20 @@ import { Languages } from "lucide-react";
 import { useLocale } from "next-intl";
 import { usePathname } from "next/navigation";
 import { useLanguageChange } from "@/hooks/useLanguageChange";
+import { useUserStore } from "@/lib/store/userStore";
+import NavbarUser from "../shared/NavbarUser";
 const Navbar = () => {
   const [open, setOpen] = React.useState(false);
   const locale = useLocale();
   const pathName = usePathname();
   const { handleLanguageChange } = useLanguageChange();
+  const { isAuthenticated } = useUserStore();
+
   const NavItems = [
     {
       id: 1,
       label: "Home",
-      href: "",
+      href: "/",
     },
     {
       id: 4,
@@ -38,7 +42,7 @@ const Navbar = () => {
 
   return (
     <div className="w-full  h-[60px] shrink-0 flex items-center bg-white text-black">
-      <div className="container px-4 mx-auto h-full w-full flex items-center justify-between">
+      <div className="custom-container h-full w-full flex items-center justify-between">
         <div className="flex items-center justify-between w-full h-full">
           <Link href="/" className="flex justify-center">
             <Image
@@ -73,12 +77,7 @@ const Navbar = () => {
               height={24}
               alt="Search"
             />
-            <Image
-              src={"/icons/user-circle.svg"}
-              width={24}
-              height={24}
-              alt="User"
-            />
+            <NavbarUser />
             <Languages
               className="cursor-pointer"
               onClick={() =>

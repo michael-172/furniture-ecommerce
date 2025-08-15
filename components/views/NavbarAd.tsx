@@ -1,3 +1,4 @@
+import { Link } from "@/i18n/navigation";
 import { ArrowRight, X } from "lucide-react";
 import { useLocale } from "next-intl";
 import Image from "next/image";
@@ -17,14 +18,15 @@ const NavbarAd = () => {
         >
           30% off storewide — Limited time!{" "}
         </p>
-        <p
+        <Link
+          href={"/shop"}
           className={`text-[#377DFF] hidden lg:flex items-center gap-1 ${
             locale == "en" ? "font-inter" : "font-cairo"
           }`}
         >
           <span>Shop Now</span>
           <ArrowRight width={18} height={18} className="mt-[2px]" />
-        </p>
+        </Link>
       </div>
       <p className="absolute right-4">
         <X

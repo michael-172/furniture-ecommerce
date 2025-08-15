@@ -118,6 +118,14 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+
+@layer utilities {
+  .custom-container {
+    @apply container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1440px] min-w-0;
+  }
+}
+
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

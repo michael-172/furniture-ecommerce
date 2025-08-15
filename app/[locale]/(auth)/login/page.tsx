@@ -30,8 +30,6 @@ const Page = () => {
     await login(values);
   }
 
-  console.log(form.formState.errors);
-
   return (
     <div className="flex flex-col w-full  max-w-md space-y-4">
       <Form {...form}>

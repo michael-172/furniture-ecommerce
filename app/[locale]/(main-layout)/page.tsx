@@ -12,14 +12,14 @@ import React from "react";
 const page = () => {
   return (
     <div className="flex flex-col w-full mb-32">
-      <div className="container px-4 mx-auto h-full w-full">
+      <div className="custom-container">
         <LandingSection />
         <Categories />
         <Products />
         <Features />
       </div>
       <ShoppingAd />
-      <div className="container px-4 mx-auto h-full w-full">
+      <div className="custom-container">
         <Articles />
       </div>
       <NewsLetter />

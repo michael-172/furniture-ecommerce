@@ -1,6 +1,7 @@
 import axiosClient from "@/lib/api/axiosClient";
+import { useUserStore } from "@/lib/store/userStore";
+import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
-import { useCallback } from "react";
 import { toast } from "sonner";
 
 type AuthCredentials = {
@@ -13,45 +14,54 @@ type SignupData = AuthCredentials & {
   username?: string;
 };
 
+const loginUser = async (credentials: AuthCredentials) => {
+  const { data } = await axiosClient.post("/auth/login", credentials);
+  return data;
+};
+
+const signupUser = async (data: SignupData) => {
+  const response = await axiosClient.post("/auth/register", data);
+  return response.data;
+};
+
 export function useAuthMutations() {
   const router = useRouter();
-  const login = useCallback(
-    async (credentials: AuthCredentials) => {
-      try {
-        const { data } = await axiosClient.post("/auth/login", credentials);
-        document.cookie = `auth_token=${data.token}; path=/; secure; samesite=strict`;
-        toast.success("Login successful");
-        router.push("/");
-        return { success: true };
-      } catch (error: unknown) {
-        toast.error((error as Error)?.message || "Login failed");
-        return { success: false, error: "Login failed" };
-      }
-    },
-    [router]
-  );
+  const { login: setLogin } = useUserStore();
 
-  const signup = useCallback(
-    async (data: SignupData) => {
-      try {
-        const response = await axiosClient.post("/auth/register", data);
-        console.log("Signing up:", response.data);
-        toast.success("Signup successful");
-        router.push("/login");
-        return { success: true };
-      } catch (error: unknown) {
-        toast.error((error as Error)?.message || "Signup failed");
-        console.log("Signup error:", (error as Error)?.message);
-        return { success: false, error: "Signup failed" };
-      }
+  const { mutate: login, isPending: isLoggingIn } = useMutation({
+    mutationFn: loginUser,
+    onSuccess: (data) => {
+      setLogin(data.data._id, data.data);
+      document.cookie = `auth_token=${data.token}; path=/; secure; samesite=strict`;
+      toast.success("Login successful");
+      router.push("/");
     },
-    [router]
-  );
+    onError: (error: unknown) => {
+      toast.error((error as Error)?.message || "Login failed");
+    },
+  });
 
-  const logout = useCallback(async () => {
+  const { mutate: signup, isPending: isSigningUp } = useMutation({
+    mutationFn: signupUser,
+    onSuccess: () => {
+      toast.success("Signup successful");
+      router.push("/login");
+    },
+    onError: (error: unknown) => {
+      toast.error((error as Error)?.message || "Signup failed");
+    },
+  });
+
+  const logout = () => {
     console.log("Logging out");
-    return { success: true };
-  }, []);
+    // Implement actual logout logic here if needed
+  };
 
-  return { login, signup, logout };
+  return {
+    login,
+    isLoggingIn,
+    signup,
+    isSigningUp,
+    logout,
+  };
 }
