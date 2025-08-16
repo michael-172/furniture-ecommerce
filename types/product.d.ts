@@ -1,8 +1,12 @@
 type ProductState = {
-  products: Product[];
   viewMode: "grid" | "list" | "compact" | "detailed";
-  setProducts: (products: Product[]) => void;
   setViewMode: (viewMode: "grid" | "list" | "compact" | "detailed") => void;
+};
+
+type ProductsResponse = {
+  data: Product[];
+  pagination: unknown;
+  message: string;
 };
 
 type Product = {
@@ -25,4 +29,5 @@ type Product = {
   updatedAt: string;
   id: string;
   rating_average: number;
+  rating_quantity: number;
 };

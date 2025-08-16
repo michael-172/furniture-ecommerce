@@ -1,9 +1,9 @@
+import "server-only";
 import axios, { AxiosError, AxiosInstance, AxiosResponse } from "axios";
 import { cookies } from "next/headers";
 
 const axiosServer: AxiosInstance = axios.create({
-  baseURL:
-    process.env.API_URL || "https://oncotools-app.com/backend/public/api",
+  baseURL: "http://localhost:6002",
   headers: {
     "Content-Type": "application/json",
   },
@@ -14,7 +14,7 @@ axiosServer.interceptors.request.use(
   async (config) => {
     // Add auth token from server-side cookies
     const cookieStore = cookies();
-    const token = (await cookieStore).get("token")?.value;
+    const token = (await cookieStore).get("auth_token")?.value;
 
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
@@ -30,17 +30,14 @@ axiosServer.interceptors.request.use(
 // Response Interceptor
 axiosServer.interceptors.response.use(
   (response: AxiosResponse) => {
-    // Transform response data
+    // Any status code that lie within the range of 2xx cause this function to trigger
     return response;
   },
   (error: AxiosError) => {
-    // Centralized error handling
-    if (error.response?.status === 401) {
-      throw new Error("Unauthorized: Invalid or missing token");
-    } else if (error.response?.status === 500) {
-      throw new Error("Server error occurred");
-    }
-    throw new Error(error.response?.statusText || error.message);
+    // Any status codes that falls outside the range of 2xx cause this function to trigger
+    // We return a rejected promise with the error object,
+    // so we can handle it in the page component
+    return Promise.reject(error);
   }
 );
 

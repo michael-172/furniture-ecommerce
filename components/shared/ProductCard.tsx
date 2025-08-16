@@ -11,14 +11,7 @@ const ProductCard = ({
   product,
   viewMode = "grid",
 }: {
-  product: {
-    id: number;
-    name: string;
-    image: string;
-    price: string;
-    priceAfterDiscount: string;
-    rating_average: number;
-  };
+  product: Product;
   viewMode?: "grid" | "list" | "compact" | "detailed";
 }) => {
   const [isItemWishlisted, setIsItemWishlisted] = React.useState(false);
@@ -88,7 +81,7 @@ const ProductCard = ({
           </Button>
         </div>
         <Image
-          src={product.image}
+          src={product.mainImage}
           width={200}
           height={200}
           className="size-full object-contain"

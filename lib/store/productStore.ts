@@ -1,8 +1,15 @@
 import { create } from "zustand";
+import { persist, createJSONStorage } from "zustand/middleware";
 
-export const useProductStore = create<ProductState>()((set) => ({
-  products: [],
-  viewMode: "grid",
-  setProducts: (products) => set({ products }),
-  setViewMode: (viewMode) => set({ viewMode }),
-}));
+export const useProductStore = create<ProductState>()(
+  persist(
+    (set) => ({
+      viewMode: "grid",
+      setViewMode: (viewMode) => set({ viewMode }),
+    }),
+    {
+      name: "product-store",
+      storage: createJSONStorage(() => localStorage),
+    }
+  )
+);

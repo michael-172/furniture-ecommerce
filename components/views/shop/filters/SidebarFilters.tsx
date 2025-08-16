@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import React from "react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
+import { useProductsQuery } from "@/hooks/products/useProductsQuery";
 
 // components/Filters/SidebarFilters.tsx
 const categories = [
@@ -31,7 +32,11 @@ export default function SidebarFilters() {
   const locale = useLocale();
   const [category, setCategory] = React.useState("All Rooms");
   const { width } = useWindowSize();
+  const { data, isLoading } = useProductsQuery<ProductsResponse>({
+    searchParams: { page: 1, limit: 10 },
+  });
 
+  console.log(data?.data.length, "products found");
   return (
     <div className="flex flex-col gap-8 h-full">
       <div className="flex items-center justify-between h-full">
