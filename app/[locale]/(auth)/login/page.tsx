@@ -17,7 +17,7 @@ import { Loader2 } from "lucide-react";
 const Page = () => {
   const t = useTranslations("Auth");
   const locale = useLocale();
-  const { login } = useAuthMutations();
+  const { login, isLoggingIn } = useAuthMutations();
 
   const loginSchema = LoginSchema();
   const form = useForm<yup.InferType<typeof loginSchema>>({
@@ -91,11 +91,11 @@ const Page = () => {
             )}
           />
           <Button
-            disabled={form.formState.isSubmitting}
+            disabled={isLoggingIn}
             className="w-full h-[48px] cursor-pointer"
             type="submit"
           >
-            {form.formState.isSubmitting ? (
+            {isLoggingIn ? (
               <Loader2 width={20} className="animate-spin" />
             ) : (
               t("submit")
