@@ -66,7 +66,7 @@ const ProductGrid = () => {
   switch (viewMode) {
     case "grid":
       return (
-        <div className="grid gap-4 grid-cols-2 lg:grid-cols-[repeat(auto-fit,_minmax(262px,_1fr))]">
+        <div className="grid gap-4 grid-cols-2 md:grid-cols-[repeat(auto-fit,_minmax(262px,_1fr))]">
           {products.map((product) => (
             <ProductCard
               viewMode={viewMode}

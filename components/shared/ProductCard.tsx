@@ -5,10 +5,11 @@ import React from "react";
 import { Button } from "../ui/button";
 import { useLocale } from "next-intl";
 import { cn } from "@/lib/utils";
+import { Link } from "@/i18n/navigation";
 
 const ProductCard = ({
   product,
-  viewMode = "compact",
+  viewMode = "grid",
 }: {
   product: {
     id: number;
@@ -29,10 +30,10 @@ const ProductCard = ({
   const discountValue = 35;
   const locale = useLocale();
   return (
-    <div
+    <Link
+      href={`/products/${product.id}`}
       className={cn("group hover:cursor-pointer", {
-        "flex flex-col h-[392px] lg:h-[433px] w-full  xl:w-[262px] gap-3":
-          viewMode == "grid",
+        "flex flex-col h-[392px] lg:h-[433px] w-full gap-3": viewMode == "grid",
         "flex flex-col lg:flex-row": viewMode == "list",
       })}
     >
@@ -73,7 +74,7 @@ const ProductCard = ({
         </div>
         <div
           className={cn(
-            "2 transition-all duration-200 group-hover:bottom-4 absolute -bottom-12 mx-auto w-[202px] lg:w-[230px] h-[46px]",
+            "2 transition-all duration-200 group-hover:bottom-4 absolute -bottom-12 mx-auto w-[202px] lg:w-[95%] lg:mx-auto h-[46px]",
             {
               hidden: viewMode !== "grid",
             }
@@ -171,7 +172,7 @@ const ProductCard = ({
           </Button>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
