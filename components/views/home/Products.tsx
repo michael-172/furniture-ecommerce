@@ -86,11 +86,11 @@ const Products = () => {
           modules={[Pagination, Scrollbar, Autoplay]}
           pagination={{ clickable: true }}
         >
-          {products.map((product) => (
+          {/* {products.map((product) => (
             <SwiperSlide className="!w-[231px] lg:!w-[262px]" key={product.id}>
               <ProductCard product={product} />
             </SwiperSlide>
-          ))}
+          ))} */}
         </Swiper>
       </div>
     </div>

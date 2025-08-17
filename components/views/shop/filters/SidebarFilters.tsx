@@ -7,18 +7,8 @@ import { cn } from "@/lib/utils";
 import React from "react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
-import { useProductsQuery } from "@/hooks/products/useProductsQuery";
-
-// components/Filters/SidebarFilters.tsx
-const categories = [
-  "All Rooms",
-  "Living Room",
-  "Bedroom",
-  "Kitchen",
-  "Bathroom",
-  "Dinning",
-  "Outdoor",
-];
+import { useCategoriesQuery } from "@/hooks/products/useCategoriesQuery";
+import { useProductStore } from "@/lib/store/productStore";
 
 const priceRanges = [
   { label: "$0.00 - 99.99", value: "0-99.99" },
@@ -32,11 +22,8 @@ export default function SidebarFilters() {
   const locale = useLocale();
   const [category, setCategory] = React.useState("All Rooms");
   const { width } = useWindowSize();
-  const { data, isLoading } = useProductsQuery<ProductsResponse>({
-    searchParams: { page: 1, limit: 10 },
-  });
-
-  console.log(data?.data.length, "products found");
+  const { data: categories } = useCategoriesQuery<CategoriesResponse>();
+  const { setFilters } = useProductStore();
   return (
     <div className="flex flex-col gap-8 h-full">
       <div className="flex items-center justify-between h-full">
@@ -76,21 +63,24 @@ export default function SidebarFilters() {
               Categories
             </h3>
             <ul className="space-y-2">
-              {categories.map((cat) => (
-                <li key={cat}>
+              {categories?.data?.map((cat) => (
+                <li key={cat.id}>
                   <button
-                    onClick={() => setCategory(cat)}
+                    onClick={() => {
+                      setCategory(cat.name);
+                      setFilters({ categoryId: String(cat.id) });
+                    }}
                     className={cn(
                       "text-[#807E7E] cursor-pointer text-sm font-semibold leading-[22px]",
                       {
                         "font-inter": locale == "en",
                         "font-cairo": locale == "ar",
-                        "text-black-500": category === cat,
-                        "border-b border-black": category === cat,
+                        "text-black-500": category === cat.name,
+                        "border-b border-black": category === cat.name,
                       }
                     )}
                   >
-                    {cat}
+                    {cat.name}
                   </button>
                 </li>
               ))}

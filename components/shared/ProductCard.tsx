@@ -81,7 +81,7 @@ const ProductCard = ({
           </Button>
         </div>
         <Image
-          src={product.mainImage}
+          src={product.images[0]}
           width={200}
           height={200}
           className="size-full object-contain"

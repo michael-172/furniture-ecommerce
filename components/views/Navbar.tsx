@@ -8,14 +8,12 @@ import { Languages } from "lucide-react";
 import { useLocale } from "next-intl";
 import { usePathname } from "next/navigation";
 import { useLanguageChange } from "@/hooks/useLanguageChange";
-import { useUserStore } from "@/lib/store/userStore";
 import NavbarUser from "../shared/NavbarUser";
 const Navbar = () => {
   const [open, setOpen] = React.useState(false);
   const locale = useLocale();
   const pathName = usePathname();
   const { handleLanguageChange } = useLanguageChange();
-  const { isAuthenticated } = useUserStore();
 
   const NavItems = [
     {
@@ -25,18 +23,18 @@ const Navbar = () => {
     },
     {
       id: 4,
-      label: "About",
-      href: "#about",
+      label: "Shop",
+      href: "/shop",
     },
     {
       id: 2,
-      label: "Projects",
-      href: "#projects",
+      label: "Blogs",
+      href: "/blogs",
     },
     {
       id: 3,
-      label: "Contact",
-      href: "#contact",
+      label: "Contact Us",
+      href: "/contact",
     },
   ];
 

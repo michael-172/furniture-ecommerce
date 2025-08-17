@@ -3,6 +3,14 @@ type ProductState = {
   setViewMode: (viewMode: "grid" | "list" | "compact" | "detailed") => void;
   product: Product | null;
   setProduct: (product: Product) => void;
+  filters: ProductFilters;
+  setFilters: (filters: Partial<ProductFilters>) => void;
+};
+
+type ProductFilters = {
+  categoryId: string | null;
+  minPrice: number | null;
+  maxPrice: number | null;
 };
 
 type ProductsResponse = {
