@@ -3,7 +3,7 @@ import axios, { AxiosError, AxiosInstance, AxiosResponse } from "axios";
 import { cookies } from "next/headers";
 
 const axiosServer: AxiosInstance = axios.create({
-  baseURL: "http://localhost:6002",
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
   headers: {
     "Content-Type": "application/json",
   },

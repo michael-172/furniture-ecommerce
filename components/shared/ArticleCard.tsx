@@ -16,7 +16,7 @@ const ArticleCard = ({
 }) => {
   const locale = useLocale();
   return (
-    <div className="group hover:cursor-pointer h-[392px] lg:h-[413px] w-[311px]  lg:w-[357px] flex flex-col gap-3">
+    <div className="group hover:cursor-pointer h-[392px] lg:h-[413px] w-[311px]  lg:min-w-[357px] w-full flex flex-col gap-3">
       <div className="h-[308px] lg:[349px] overflow-hidden w-full bg-[#F3F5F7] flex items-center justify-center relative">
         <Image
           src={article.image}

@@ -1,6 +1,8 @@
 type ProductState = {
   viewMode: "grid" | "list" | "compact" | "detailed";
   setViewMode: (viewMode: "grid" | "list" | "compact" | "detailed") => void;
+  product: Product | null;
+  setProduct: (product: Product) => void;
 };
 
 type ProductsResponse = {
