@@ -8,14 +8,20 @@ type ProductState = {
 };
 
 type ProductFilters = {
-  categoryId: string | null;
-  minPrice: number | null;
-  maxPrice: number | null;
+  categoryId: string | undefined;
+  minPrice: number | undefined;
+  maxPrice: number | undefined;
+  sortBy: string | undefined;
 };
 
 type ProductsResponse = {
   data: Product[];
-  pagination: unknown;
+  pagination: {
+    page: number;
+    limit: number;
+    results: number;
+    total_pages: number;
+  };
   message: string;
 };
 

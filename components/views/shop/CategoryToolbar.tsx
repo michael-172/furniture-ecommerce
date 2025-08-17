@@ -10,9 +10,18 @@ import {
 import { ChevronDown } from "lucide-react";
 import ViewToggle from "./filters/ViewToggle";
 import { cn } from "@/lib/utils";
+import { useProductStore } from "@/lib/store/productStore";
 
 const CategoryToolbar = () => {
   const locale = useLocale();
+  const { setFilters } = useProductStore();
+
+  const filters = [
+    { label: "A to Z", value: "A-Z" },
+    { label: "Z to A", value: "Z-A" },
+    { label: "Highest Price", value: "high-to-low" },
+    { label: "Lowest Price", value: "low-to-high" },
+  ];
   return (
     <div className="h-fit flex items-center justify-between">
       <p
@@ -36,14 +45,15 @@ const CategoryToolbar = () => {
             <ChevronDown size={20} color="#121212" />
           </DropdownMenuTrigger>
           <DropdownMenuContent>
-            <DropdownMenuItem className="cursor-pointer">A-Z</DropdownMenuItem>
-            <DropdownMenuItem className="cursor-pointer">Z-A</DropdownMenuItem>
-            <DropdownMenuItem className="cursor-pointer">
-              Highest Price
-            </DropdownMenuItem>
-            <DropdownMenuItem className="cursor-pointer">
-              Lowest Price
-            </DropdownMenuItem>
+            {filters.map((filter) => (
+              <DropdownMenuItem
+                key={filter.value}
+                className="cursor-pointer"
+                onClick={() => setFilters({ sortBy: filter.value })}
+              >
+                {filter.label}
+              </DropdownMenuItem>
+            ))}
           </DropdownMenuContent>
         </DropdownMenu>
         <div className={cn("hidden lg:inline-flex")}>

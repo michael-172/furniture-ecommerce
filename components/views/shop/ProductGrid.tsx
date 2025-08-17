@@ -18,8 +18,8 @@ const ProductGrid = () => {
     isFetchingNextPage,
     status,
   } = useInfiniteProductsQuery({
-    limit: 5,
-    filters: { categoryId: filters.categoryId?.toString() },
+    limit: 1,
+    filters,
   });
 
   if (status === "pending") {
