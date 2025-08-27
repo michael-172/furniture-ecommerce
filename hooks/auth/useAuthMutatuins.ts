@@ -31,7 +31,7 @@ export function useAuthMutations() {
   const { mutate: login, isPending: isLoggingIn } = useMutation({
     mutationFn: loginUser,
     onSuccess: (data) => {
-      setLogin(data.data._id, data.data);
+      setLogin(data.user.id, data.data);
       document.cookie = `auth_token=${data.token}; path=/; secure; samesite=strict`;
       toast.success("Login successful");
       router.push("/");

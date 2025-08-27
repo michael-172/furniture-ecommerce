@@ -9,7 +9,6 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
   try {
     const { data: product } = await axiosServer.get(`/products/${id}`);
-
     return <ProductView product={product.data} />;
   } catch (error) {
     // Handle API errors

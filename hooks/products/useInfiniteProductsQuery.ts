@@ -31,7 +31,7 @@ async function fetchProductsPage({
   limit: number;
   filters: GetProductsFilters;
 }): Promise<ProductsResponse> {
-  const { data } = await axiosClient.get("/products", {
+  const { data } = await axiosClient.get("/products/all", {
     params: {
       page: pageParam,
       limit,

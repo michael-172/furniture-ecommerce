@@ -9,7 +9,6 @@ import { Button } from "@/components/ui/button";
 
 const ProductGrid = () => {
   const { filters, viewMode } = useProductStore();
-  console.log("Current filters:", filters.categoryId);
   const {
     data,
     error,

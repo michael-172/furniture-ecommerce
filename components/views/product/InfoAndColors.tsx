@@ -1,4 +1,3 @@
-import { useProductsQuery } from "@/hooks/products/useProductsQuery";
 import { useProductStore } from "@/lib/store/productStore";
 import { cn } from "@/lib/utils";
 import { ChevronRight } from "lucide-react";
@@ -9,7 +8,9 @@ import React from "react";
 const InfoAndColors = () => {
   const locale = useLocale();
   const { product } = useProductStore();
-  const [currentColor, setCurrentColor] = React.useState(product?.colors[0]);
+  const [currentVariant, setCurrentColor] = React.useState(
+    product?.variants[0]
+  );
 
   return (
     <div className="flex flex-col gap-6 py-6">
@@ -45,31 +46,36 @@ const InfoAndColors = () => {
               }
             )}
           >
-            Choose Color <ChevronRight size={18} className="mt-[1px]" />
+            Choose Variant <ChevronRight size={18} className="mt-[1px]" />
           </div>
-          <p className="text-black text-xl font-normal leading-8">
-            {currentColor?.name
-              ? currentColor.name.charAt(0).toUpperCase() +
-                currentColor.name.slice(1)
-              : "Default Color"}
-          </p>
         </div>
         <div className="flex items-center gap-4 flex-wrap">
-          {product?.colors &&
-            product?.colors?.length > 0 &&
-            product?.colors.map((el, i) => (
-              <Image
-                key={i}
-                src={el.image}
-                alt={el.name}
-                width={72}
-                height={72}
-                className={cn("cursor-pointer", {
-                  "border border-[color:var(--neutral-07100,#141718)] border-solid":
-                    currentColor?.name === el.name,
-                })}
-                onClick={() => setCurrentColor(el)}
-              />
+          {product?.variants &&
+            product?.variants.length > 0 &&
+            product?.variants.map((el, i) => (
+              <div className="flex flex-col gap-1" key={i}>
+                <p className="text-black text-xl font-normal flex items-center gap-2 leading-8">
+                  {Object.entries(JSON.parse(el.attributes)).map(
+                    ([key, value]) => (
+                      <span key={key} className="capitalize">
+                        {key}: {value as string}
+                      </span>
+                    )
+                  )}
+                </p>
+
+                <Image
+                  src={el.image}
+                  alt={el.id}
+                  width={72}
+                  height={72}
+                  className={cn("cursor-pointer", {
+                    "border border-[color:var(--neutral-07100,#141718)] border-solid":
+                      currentVariant?.id === el.id,
+                  })}
+                  onClick={() => setCurrentColor(el)}
+                />
+              </div>
             ))}
         </div>
       </div>

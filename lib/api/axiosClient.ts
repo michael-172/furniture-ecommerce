@@ -31,7 +31,7 @@ axiosClient.interceptors.request.use(
 axiosClient.interceptors.response.use(
   (response: AxiosResponse) => {
     // Transform response data if needed
-    return response;
+    return response.data;
   },
   (error: AxiosError) => {
     // Centralized error handling

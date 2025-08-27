@@ -31,7 +31,7 @@ axiosServer.interceptors.request.use(
 axiosServer.interceptors.response.use(
   (response: AxiosResponse) => {
     // Any status code that lie within the range of 2xx cause this function to trigger
-    return response;
+    return response.data;
   },
   (error: AxiosError) => {
     // Any status codes that falls outside the range of 2xx cause this function to trigger

@@ -26,7 +26,7 @@ type ProductsResponse = {
 };
 
 type Product = {
-  _id: string;
+  id: string;
   name: string;
   price: number;
   priceAfterDiscount: number;
@@ -35,15 +35,19 @@ type Product = {
   categoryId: string;
   mainImage: string;
   images: string[];
-  colors: {
-    name: string;
-    image: string;
-    _id: string;
-    id: string;
-  }[];
+  variants: Variant[];
   createdAt: string;
   updatedAt: string;
-  id: string;
   rating_average: number;
   rating_quantity: number;
+};
+
+type Variant = {
+  id: string;
+  productId: string;
+  attributes: string;
+  image: string;
+  stock: number;
+  price: number;
+  sku: string;
 };
