@@ -9,3 +9,9 @@ declare module "next-intl" {
     Formats: typeof formats;
   }
 }
+
+interface Pagination {
+  page: number;
+  limit: number;
+  total: number;
+}

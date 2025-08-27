@@ -3,12 +3,12 @@ import React from "react";
 import HamburgerToggle from "./HumbergerMenu";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
-import { Badge } from "../ui/badge";
 import { Languages } from "lucide-react";
 import { useLocale } from "next-intl";
 import { usePathname } from "next/navigation";
-import { useLanguageChange } from "@/hooks/useLanguageChange";
+import { useLanguageChange } from "@/hooks/global/useLanguageChange";
 import NavbarUser from "../shared/NavbarUser";
+import ShoppingCart from "../shared/ShoppingCart";
 const Navbar = () => {
   const [open, setOpen] = React.useState(false);
   const locale = useLocale();
@@ -82,17 +82,7 @@ const Navbar = () => {
                 handleLanguageChange(locale === "en" ? "ar" : "en")
               }
             />
-            <div className="flex items-center justify-center gap-[5px]">
-              <Image
-                src={"/icons/shopping bag.svg"}
-                width={24}
-                height={24}
-                alt="Search"
-              />
-              <Badge className="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums">
-                2
-              </Badge>
-            </div>
+            <ShoppingCart />
           </div>
 
           <div className="flex lg:hidden">

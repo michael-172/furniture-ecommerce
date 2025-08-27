@@ -40,6 +40,7 @@ type Product = {
   updatedAt: string;
   rating_average: number;
   rating_quantity: number;
+  status: "AVAILABLE" | "OUT_OF_STOCK" | "DISCONTINUED"; // adjust as needed
 };
 
 type Variant = {

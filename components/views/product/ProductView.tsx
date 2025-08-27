@@ -18,9 +18,9 @@ const ProductView = ({ product }: { product: Product }) => {
         <ProductGallery images={product.images} />
         <ProductInfo product={product} />
       </div>
-      {/* <div className="mt-12">
+      <div className="mt-12">
         <ProductTabs product={product} />
-      </div> */}
+      </div>
     </div>
   );
 };

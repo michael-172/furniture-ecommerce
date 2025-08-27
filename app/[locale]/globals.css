@@ -193,3 +193,13 @@
   height: 100%;
   object-fit: cover;
 }
+
+.previewCartItem-name{
+    overflow: hidden;
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+
+}

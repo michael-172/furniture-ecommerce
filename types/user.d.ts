@@ -15,3 +15,24 @@ type LoggedInUser = {
   __v: number;
   // Add any other user properties you need
 };
+
+type MyCartResponse = {
+  data: Cart;
+  status: string;
+  message: string;
+  pagination?: Pagination;
+};
+
+type Cart = {
+  id: string;
+  createdAt: string; // ISO date string
+  updatedAt: string; // ISO date string
+  cart_items: CartItem[];
+};
+
+type CartItem = {
+  id: string;
+  quantity: number;
+  product: Product;
+  variant: Variant;
+};
